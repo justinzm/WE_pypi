@@ -8,3 +8,5 @@
 from web_extractor.test import (
     cs_test
 )
+
+from web_extractor.new_extractor import NewsExtractor
