@@ -22,7 +22,7 @@ class NewsExtractor:
                 author_xpath='',
                 publish_time_xpath='',
                 keywords_xpath='',
-                description_xpath = '',
+                description_xpath='',
                 host='',
                 noise_node_list=None,
                 with_body_html=False):
