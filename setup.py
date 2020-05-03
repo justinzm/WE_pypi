@@ -10,9 +10,9 @@ from setuptools import find_packages, setup
 import os
 
 
-URL = 'https://github.com/justinzm/ContentExtractor'
+URL = 'https://github.com/justinzm/WE_pypi'
 NAME = 'web_extractor'
-VERSION = '0.0.3'
+VERSION = '0.1.1'
 DESCRIPTION = 'WEB Content Extractor'
 if os.path.exists('README.md'):
     with open('README.md', encoding='utf-8') as f:
@@ -26,7 +26,11 @@ PLATFORMS = [
     'all',
 ]
 REQUIRES = [
-    'requests'
+    'requests',
+    'lxml',
+    'yaml',
+    'pyyaml',
+    'numpy'
 ]
 # CONSOLE_SCRIPT = 'my-cmd=my_pkg.my_cmd:main'
 # # 如果想在 pip install 之后自动生成一个可执行命令，就靠它了:

@@ -3,7 +3,8 @@
 # @Time    : 2020/5/2 21:49
 # @Author  : justin.郑 3907721@qq.com
 # @File    : __init__.py.py
-# @Desc    :
+# @Desc    : 新闻类站点自动化抽取类
+
 from web_extractor.new_extractor.AuthorExtractor import AuthorExtractor
 from web_extractor.new_extractor.ContentExtractor import ContentExtractor
 from web_extractor.new_extractor.TimeExtractor import TimeExtractor
@@ -20,14 +21,23 @@ class NewsExtractor:
                 host='',
                 noise_node_list=None,
                 with_body_html=False):
-
-        # 对 HTML 进行预处理可能会破坏 HTML 原有的结构，导致根据原始 HTML 编写的 XPath 不可用
-        # 因此，如果指定了 title_xpath/author_xpath/publish_time_xpath，那么需要先提取再进行
-        # 预处理
+        """
+        新闻类站点自动化抽取
+        :param html:                新闻页面源代码
+        :param title_xpath:         新闻标题xpath
+        :param author_xpath:        作者xpath
+        :param publish_time_xpath:  发布时间xpath
+        :param host:                站点网址
+        :param noise_node_list:     去除多余list内容
+        :param with_body_html:
+        :return:    输出json
+        """
         element = html2element(html)
+
         title = TitleExtractor().extract(element, title_xpath=title_xpath)
         publish_time = TimeExtractor().extractor(element, publish_time_xpath=publish_time_xpath)
         author = AuthorExtractor().extractor(element, author_xpath=author_xpath)
+
         element = pre_parse(element)
         remove_noise_node(element, noise_node_list)
         content = ContentExtractor().extract(element, host, with_body_html)
@@ -39,3 +49,4 @@ class NewsExtractor:
         if with_body_html or config.get('with_body_html', False):
             result['body_html'] = content[0][1]['body_html']
         return result
+

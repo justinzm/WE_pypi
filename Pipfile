@@ -9,7 +9,7 @@ verify_ssl = true
 twine = "*"
 lxml = "*"
 yaml = "*"
-pyyaml = {index = "https://pypi.python.org/pypi",version = "*"}
+pyyaml = "*"
 numpy = "*"
 
 [requires]

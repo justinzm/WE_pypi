@@ -5,7 +5,7 @@
 # @File    : cons.py.py
 # @Desc    : 配置文件
 
-
+# 作者模式
 AUTHOR_PATTERN = [
             "责编[：|:| |丨|/]\s*([\u4E00-\u9FA5a-zA-Z]{2,20})[^\u4E00-\u9FA5|:|：]",
             "责任编辑[：|:| |丨|/]\s*([\u4E00-\u9FA5a-zA-Z]{2,20})[^\u4E00-\u9FA5|:|：]",
@@ -23,6 +23,7 @@ AUTHOR_PATTERN = [
             # '(文/图[：|:| |丨|/]?\s*[\u4E00-\u9FA5a-zA-Z、 ]{2,20})[）】)]]?[^\u4E00-\u9FA5|:|：]',
 ]
 
+# 日期模式
 DATETIME_PATTERN = [
     "(\d{4}[-|/|.]\d{1,2}[-|/|.]\d{1,2}\s*?[0-1]?[0-9]:[0-5]?[0-9]:[0-5]?[0-9])",
     "(\d{4}[-|/|.]\d{1,2}[-|/|.]\d{1,2}\s*?[2][0-3]:[0-5]?[0-9]:[0-5]?[0-9])",
@@ -56,15 +57,18 @@ DATETIME_PATTERN = [
     "(\d{1,2}月\d{1,2}日)"
 ]
 
+# 标题模式
 TITLE_HTAG_XPATH = '//h1//text() | //h2//text() | //h3//text() | //h4//text()'
 
 TITLE_SPLIT_CHAR_PATTERN = '[-_|]'
 
+# 无用标签
 USELESS_TAG = ['style', 'script', 'link', 'video', 'iframe', 'source', 'picture', 'header', 'blockquote']
 
-# if one tag in the follow list does not contain any child node nor content, it could be removed
+# 如果下面列表中的一个标记不包含任何子节点或内容，则可以删除它
 TAGS_CAN_BE_REMOVE_IF_EMPTY = ['section', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span']
 
+# 无用区域
 USELESS_ATTR = ['share',
                 'contribution',
                 'copyright',

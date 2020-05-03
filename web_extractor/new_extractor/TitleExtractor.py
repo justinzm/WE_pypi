@@ -1,7 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2020/5/2 12:16
+# @Author  : justin.郑 3907721@qq.com
+# @File    : __init__.py.py
+# @Desc    : TitleExtractor.py
+
 import re
 from lxml.html import HtmlElement
 from web_extractor.cons import TITLE_SPLIT_CHAR_PATTERN, TITLE_HTAG_XPATH
-from web_extractor.utils import config
+from web_extractor.new_extractor.new_utils import config
 
 
 class TitleExtractor:

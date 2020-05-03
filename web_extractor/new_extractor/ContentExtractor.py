@@ -1,14 +1,21 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2020/5/2 12:16
+# @Author  : justin.郑 3907721@qq.com
+# @File    : __init__.py.py
+# @Desc    : ContentExtractor.py
+
 import re
 import numpy as np
 from lxml.html import etree
 from html import unescape
-from web_extractor.utils import get_high_weight_keyword_pattern, iter_node, pad_host_for_images, config
+from web_extractor.utils import get_high_weight_keyword_pattern, iter_node, pad_host_for_images
+from web_extractor.new_extractor.new_utils import config
 
 
 class ContentExtractor:
     def __init__(self, content_tag='p'):
         """
-
         :param content_tag: 正文内容在哪个标签里面
         """
         self.content_tag = content_tag
@@ -73,12 +80,10 @@ class ContentExtractor:
         TDi = -----------
               TGi - LTGi
 
-
         Ti:节点 i 的字符串字数
         LTi：节点 i 的带链接的字符串字数
         TGi：节点 i 的标签数
         LTGi：节点 i 的带连接的标签数
-
 
         :return:
         """
