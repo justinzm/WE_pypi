@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/5/2 12:16
 # @Author  : justin.郑 3907721@qq.com
-# @File    : __init__.py.py
-# @Desc    : ContentExtractor.py
+# @File    : ContentExtractor.py
+# @Desc    : 新闻文章正文信息抽取
 
 import re
 import numpy as np

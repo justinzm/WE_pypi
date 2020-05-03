@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/5/2 12:16
 # @Author  : justin.郑 3907721@qq.com
-# @File    : __init__.py.py
-# @Desc    : TimeExtractor.py
+# @File    : TimeExtractor.py
+# @Desc    : 新闻发布时间抽取
 
 import re
 from lxml.html import HtmlElement
@@ -15,7 +15,7 @@ class TimeExtractor:
     def __init__(self):
         self.time_pattern = DATETIME_PATTERN
 
-    def extractor(self, element: HtmlElement, publish_time_xpath: str = '') -> str:
+    def extract(self, element: HtmlElement, publish_time_xpath: str = '') -> str:
         publish_time_xpath = publish_time_xpath or config.get('publish_time', {}).get('xpath')
         publish_time = (self.extract_from_user_xpath(publish_time_xpath, element)  # 用户指定的 Xpath 是第一优先级
                         or self.extract_from_meta(element)   # 第二优先级从 Meta 中提取

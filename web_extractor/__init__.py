@@ -10,3 +10,9 @@
 新闻类站点自动化抽取
 """
 from web_extractor.new_extractor import NewsExtractor
+
+
+"""
+电商类站点自动化抽取
+"""
+from web_extractor.shop_extractor import ShopExtractor

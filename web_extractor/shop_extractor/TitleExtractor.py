@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2020/5/2 12:16
+# @Time    : 2020/5/3 14:17
 # @Author  : justin.郑 3907721@qq.com
 # @File    : TitleExtractor.py
-# @Desc    : 新闻文章标题抽取
+# @Desc    : 电商 商品标题抽取
 
 import re
 from lxml.html import HtmlElement
 from web_extractor.cons import TITLE_SPLIT_CHAR_PATTERN, TITLE_HTAG_XPATH
-from web_extractor.new_extractor.new_utils import config
+from web_extractor.shop_extractor.shop_utils import config
 
 
 class TitleExtractor:
@@ -44,5 +44,3 @@ class TitleExtractor:
         if not title_list:
             return ''
         return title_list[0]
-
-

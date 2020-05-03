@@ -111,3 +111,17 @@ PUBLISH_TIME_META = [
     '//meta[starts-with(@name, "weibo: article:create_at")]/@content',
     '//meta[starts-with(@pubdate, "pubdate")]/@content',
 ]
+
+KEYWORDS_META = [
+    '//meta[starts-with(@name, "keywords")]/@content',
+    '//meta[starts-with(@name, "Keywords")]/@content',
+]
+
+KEYWORDS_PATTERN = [
+    "标签[：|:| |丨|/]\s*([\u4E00-\u9FA5a-zA-Z]{2,20})[^\u4E00-\u9FA5|:|：|<]",
+]
+
+DESCRIPTION_META = [
+    '//meta[starts-with(@name, "Description")]/@content',
+    '//meta[starts-with(@name, "description")]/@content',
+]

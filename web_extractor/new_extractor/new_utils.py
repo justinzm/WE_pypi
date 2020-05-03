@@ -5,18 +5,38 @@
 # @File    : new_utils.py
 # @Desc    : 新闻类信息抽取工具
 
-import os
-import yaml
-
 
 def read_config():
-    if os.path.exists('.new_config'):
-        with open('.new_config', encoding='utf-8') as f:
-            config_text = f.read()
-        config = yaml.safe_load(config_text)
-        return config
-    return {}
+    return {
+        "title": {
+            "xpath": "//title/text()"
+        },
+        "host": "",
+        "noise_node_list": [
+            '//div[@class=\"comment-list\"]',
+            '//*[@style=\"display:none\"]',
+            '//*[@class="contheight"]'
+        ],
+        "with_body_html": False,
+        "author": {
+            "xpath": '//meta[@name="author"]/@content'
+        },
+        "publish_time": {
+            "xpath": '//em[@id="publish_time"]/text()'
+        },
+    }
 
+
+# host: https://www.xxx.com
+# noise_node_list:
+#     - //div[@class=\"comment-list\"]
+#     - //*[@style=\"display:none\"]
+#     - //*[@class="contheight"]
+# with_body_html: false
+# author:
+#     xpath: //meta[@name="author"]/@content
+# publish_time:
+#     xpath: //em[@id="publish_time"]/text()
 
 config = read_config()
 

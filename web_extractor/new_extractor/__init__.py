@@ -7,9 +7,12 @@
 
 from web_extractor.new_extractor.AuthorExtractor import AuthorExtractor
 from web_extractor.new_extractor.ContentExtractor import ContentExtractor
+from web_extractor.new_extractor.DescriptionExtractor import DescriptionExtractor
+from web_extractor.new_extractor.KeywordsExtractor import KeywordsExtractor
 from web_extractor.new_extractor.TimeExtractor import TimeExtractor
 from web_extractor.new_extractor.TitleExtractor import TitleExtractor
-from web_extractor.utils import html2element, pre_parse, remove_noise_node, config
+from web_extractor.utils import html2element, pre_parse, remove_noise_node
+from web_extractor.new_extractor.new_utils import config
 
 
 class NewsExtractor:
@@ -18,6 +21,8 @@ class NewsExtractor:
                 title_xpath='',
                 author_xpath='',
                 publish_time_xpath='',
+                keywords_xpath='',
+                description_xpath = '',
                 host='',
                 noise_node_list=None,
                 with_body_html=False):
@@ -27,6 +32,8 @@ class NewsExtractor:
         :param title_xpath:         新闻标题xpath
         :param author_xpath:        作者xpath
         :param publish_time_xpath:  发布时间xpath
+        :param keywords_xpath:      新闻关键词xpath
+        :param description_xpath:   新闻简介xpath
         :param host:                站点网址
         :param noise_node_list:     去除多余list内容
         :param with_body_html:
@@ -35,8 +42,10 @@ class NewsExtractor:
         element = html2element(html)
 
         title = TitleExtractor().extract(element, title_xpath=title_xpath)
-        publish_time = TimeExtractor().extractor(element, publish_time_xpath=publish_time_xpath)
-        author = AuthorExtractor().extractor(element, author_xpath=author_xpath)
+        publish_time = TimeExtractor().extract(element, publish_time_xpath=publish_time_xpath)
+        author = AuthorExtractor().extract(element, author_xpath=author_xpath)
+        keywords = KeywordsExtractor().extract(element, keywords_xpath=keywords_xpath)
+        description = DescriptionExtractor().extract(element, description_xpath=description_xpath)
 
         element = pre_parse(element)
         remove_noise_node(element, noise_node_list)
@@ -44,6 +53,8 @@ class NewsExtractor:
         result = {'title': title,
                   'author': author,
                   'publish_time': publish_time,
+                  'keywords': keywords,
+                  'description': description,
                   'content': content[0][1]['text'],
                   'images': content[0][1]['images']}
         if with_body_html or config.get('with_body_html', False):
