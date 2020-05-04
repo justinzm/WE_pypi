@@ -5,6 +5,8 @@
 # @File    : __init__.py.py
 # @Desc    : 新闻类站点自动化抽取类
 
+import chardet
+import requests
 from web_extractor.new_extractor.AuthorExtractor import AuthorExtractor
 from web_extractor.new_extractor.ContentExtractor import ContentExtractor
 from web_extractor.new_extractor.DescriptionExtractor import DescriptionExtractor
@@ -17,7 +19,8 @@ from web_extractor.new_extractor.new_utils import config
 
 class NewsExtractor:
     def extract(self,
-                html,
+                url='',
+                html=None,
                 title_xpath='',
                 author_xpath='',
                 publish_time_xpath='',
@@ -28,6 +31,7 @@ class NewsExtractor:
                 with_body_html=False):
         """
         新闻类站点自动化抽取
+        :param url:                 新闻页面网址
         :param html:                新闻页面源代码
         :param title_xpath:         新闻标题xpath
         :param author_xpath:        作者xpath
@@ -39,6 +43,9 @@ class NewsExtractor:
         :param with_body_html:
         :return:    输出json
         """
+        if url is not None and len(url) > 0:
+            html = self.getHtml(url=url)
+
         element = html2element(html)
 
         title = TitleExtractor().extract(element, title_xpath=title_xpath)
@@ -61,3 +68,8 @@ class NewsExtractor:
             result['body_html'] = content[0][1]['body_html']
         return result
 
+    def getHtml(self, url: str) -> str:
+        response = requests.get(url)
+        encode_info = chardet.detect(response.content)
+        response.encoding = encode_info['encoding'] if encode_info['confidence'] > 0.5 else 'utf-8'
+        return response.text
