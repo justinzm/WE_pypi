@@ -12,7 +12,7 @@ import os
 
 URL = 'https://github.com/justinzm/WE_pypi'
 NAME = 'web_extractor'
-VERSION = '0.1.2'
+VERSION = '0.1.3'
 DESCRIPTION = 'WEB Content Extractor'
 if os.path.exists('README.md'):
     with open('README.md', encoding='utf-8') as f:

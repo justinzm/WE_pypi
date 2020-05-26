@@ -15,6 +15,6 @@ def test(url):
 
 
 if __name__ == "__main__":
-    url = '''https://news.sina.com.cn/c/2020-05-03/doc-iirczymi9559763.shtml'''
+    url = '''https://timesofindia.indiatimes.com/business/india-business/raghuram-rajan-clears-the-air-on-how-to-fund-stimulus/articleshow/75639335.cms'''
     test(url=url)
 
